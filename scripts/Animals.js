@@ -5,9 +5,8 @@ class Animal extends LivingBeing{
     constructor(param){
         super(param); // Envoie les paramètre à la classe parent LivingBeing
 
-        this.cage =  param["cage"] ? param["cage"] : null;
-        this.type =  param["type"] ? param["type"] : null; // Terrestre, marin ou volatile           
-
+        this.cage =  param["cage"] ? param["cage"] : "bois";
+        this.type =  param["type"] ? param["type"] : "terrestre"; // Terrestre, marin ou volatile     
     }
   
     Eat(obj){
@@ -31,7 +30,8 @@ class Carnivorous  extends Animal{
     }
     
     Growl(to){
-
+        // Grogne(), tous les humains aux alentours gagnent un point d'humeur
+        
     }
 }
 
@@ -41,7 +41,11 @@ class Herbivorous extends Animal{
     }
 
     Ruminate(){
+        if(this.hunger >= 0){
+            this.Die();
+        }
 
+        this.hunger--;
     }
 }
 
@@ -51,5 +55,6 @@ class Monkey extends Herbivorous{
         super(param);
     }
 }
+
 
 export {Animal, Omnivorous, Herbivorous, Carnivorous, Monkey};
