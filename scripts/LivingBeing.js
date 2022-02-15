@@ -25,7 +25,7 @@ class LivingBeing {
           this.pv--;
         }
 
-        this.hunger++;
+        //this.hunger++;
 
       }, 1000);
     }

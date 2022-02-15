@@ -20,7 +20,7 @@ class HumanAdult extends Client{
         // Permet d'acheter quelque chose, un ticket ou un bonbon pour le donner à l'enfant
         // Achete quelque chose au stand le plus proche, si il s'agit d'un consommable il le stocke dans son inventaire
 
-        console.log("L'adulte vient d'acheter quelque chose");
+        // console.log("L'adulte vient d'acheter quelque chose");
     }
 
     

@@ -1,23 +1,17 @@
-import {ZooManager} from "./ZooManager.js";
 import {Herbivorous, Monkey} from "./Animals.js"
 import {HumanAdult, HumanChild } from "./Client.js";
 import {Healer} from "./Healer.js";
 
-var vache = new Herbivorous({age : 78, cage : "acier trempé"}); 
-var jeanMichel = new HumanAdult({age : 125});
-
-var manager = new ZooManager();
-
+var vache = new Herbivorous({age : 78, cage : "acier trempé", pv : 2000, hunger : 5}); 
+// var jeanMichel = new HumanAdult({age : 125});
+// console.dir(vache);
 
 
-
-console.dir(vache);
 // Pour instancier un animal on déclare l'objet auquel on passe pour argument un objet avec
 // toutes les variables pour spécifier ses caractéristiques
 // -> Plus d'information dans la classe parent
-
-var healer = new Healer({available : 1, exp : 1});
-
+var interval = 0;
+var monHealer = new Healer({available : 1, exp : 1});
 
 
 class ZooManager {
@@ -25,7 +19,6 @@ class ZooManager {
     constructor(humans = [], animals = [], stands = []){
 
         this.time = 0; // Temps en secondes 
-        this.interval = 0;
 
         this.humans = humans;
         this.animals = animals;
@@ -33,8 +26,7 @@ class ZooManager {
 
         setInterval(this.Clock, 1000);
 
-        this.monHealer = new Healer({available : 1, exp : 1});
-        this.maVache = new Herbivorous({age : 78, cage : "acier trempé"}); 
+       
     }
 
     AddHuman(human){
@@ -54,15 +46,18 @@ class ZooManager {
     }
    
     Clock(){
+        console.log(interval)
        this.time++;
 
-       this.interval++;
+       interval++;
 
-       if(this.interval > 5)
-       this.monHealer.feed(this.maVache);
-       
+       if(interval > 2){
+            monHealer.feed(vache);
+            interval = 0;
+       }   
 
        
     }
 }
-var healer = new Healer({available : 0, exp : 1});
+
+var manager = new ZooManager();
