@@ -16,4 +16,4 @@ console.dir(vache);
 // toutes les variables pour spécifier ses caractéristiques
 // -> Plus d'information dans la classe parent
 
-var healer = new Healer({available : 1, exp : 1});
+var healer = new Healer({available : 0, exp : 1});
