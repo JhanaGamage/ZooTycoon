@@ -9,14 +9,9 @@ class Client extends LivingBeing{
 class HumanAdult extends Client{
     constructor(param)
     {   
-        super(param);        
-
-        var personnel = {jean : "fort", michel : "faible"}
-        
+        super(param);                
         
         setInterval(this.BuySomenthing, 2000);
-
-        
     }
 
     

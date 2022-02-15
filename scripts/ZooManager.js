@@ -2,7 +2,6 @@ class ZooManager {
 
     constructor(humans = [], animals = [], stands = []){
 
-
         this.time = 0; // Temps en secondes 
 
         this.humans = humans;
@@ -23,9 +22,15 @@ class ZooManager {
     AddStand(stand){
         this.stands.push(stand)
     }
+
+    TriggerHuman(human){
+        
+    }
    
     Clock(){
        this.time++;
+
+       
     }
 }
 

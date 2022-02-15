@@ -54,6 +54,10 @@ class Monkey extends Herbivorous{
     constructor(param){
         super(param);
     }
+
+    DebugInfo(){
+        console.log("Le singe est un animal vicieux, il aime voler les clients du parc et leur jeter des pierres");
+    }
 }
 
 
