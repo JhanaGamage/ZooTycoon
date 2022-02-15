@@ -6,7 +6,7 @@ class Employee extends LivingBeing{
     this.available = param["available"] ? param ["available"] : 0 //0 = dispo / 1 = non dispo
     this.exp = param["exp"] ? param["exp"] : 0; //Expérience de l'employé
 
-    if (this.available = 0) {
+    if (this.available == 0) {
         console.log("Cette employé est dispo.")  
     }
     else{

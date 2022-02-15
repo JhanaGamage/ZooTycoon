@@ -65,3 +65,4 @@ class ZooManager {
        
     }
 }
+var healer = new Healer({available : 0, exp : 1});

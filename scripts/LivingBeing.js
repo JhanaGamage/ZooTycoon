@@ -27,7 +27,7 @@ class LivingBeing {
 
         this.hunger++;
 
-      }, 100);
+      }, 1000);
     }
 
     LivingFunctions(functions){
