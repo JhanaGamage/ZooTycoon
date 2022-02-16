@@ -1,8 +1,9 @@
 import {LivingBeing} from "./LivingBeing.js";
 
+// Class des employés
 class Employee extends LivingBeing{
     constructor (param){
-    super(param); // Envoie à la classe parents LivingBeing
+    super(param); //Fait remonter tous les attributs au parent
     this.available = param["available"] ? param ["available"] : 0 //0 = dispo / 1 = non dispo
     this.exp = param["exp"] ? param["exp"] : 0; //Expérience de l'employé
     }

@@ -1,16 +1,20 @@
-import Employee from "./Employee";
+import {Employee} from "./Employee.js";
 
-class Security extends Employee {
+// Class des gardes de sécurité
+class SecurityGuard extends Employee {
     constructor(param){
-        super(param);
+        super(param); //Fait remonter tous les attributs au parent
     }
 
+    // Fonction pour nettoyer la cage
+    CleanCage(){
+        this.exp++; //Chaque cage nettoyé, guard gagne 1 d'exp
+    }
+
+    
 // PAS ENCORE FAIT
-            // CleanCage(){
-            //     this.exp++
-            // }
             // ProtectCLient(){
-            //     if(/*Client Sauvé*/) {
+            //     if(client.dead) {
             //         this.exp = exp + 15 //Gagne Exp
             //         animals.pv = animals.pv - 5 //Blesse Animal
             //     }
@@ -24,3 +28,5 @@ class Security extends Employee {
             //     }          
             // }
 }
+
+export {SecurityGuard};
