@@ -19,11 +19,12 @@ class ZooManager {
         this.animals = animals;
         this.stands = stands;
         
-        this.monHealer = new Healer({available : 1, exp : 1});
+        // Lors de l'instanciation d'une classe, ne pas oublier de donner un nom
+        this.monHealer = new Healer({name : "Soigneur", available : 1, exp : 1});
         this.jeanMichel = new HumanAdult({age : 125, name : "Michou", inventory : {money : 150, creditCard : 1} });
         this.ginette = new HumanChild({age : 2, name : "ginette", relative : this.jeanMichel, manager : this});
         this.albertLeG = new HumanAdult({age : 125, name : "Albert le gitan", inventory : {gun : 1, money : 0} });
-        this.vache = new Herbivorous({age : 78, cage : "acier trempé", pv : 20, hunger : 0}); 
+        this.vache = new Herbivorous({name: "La vache", age : 78, cage : "acier trempé", pv : 20, hunger : 0}); 
 
         this.AddHuman(this.jeanMichel);        
         this.AddHuman(this.albertLeG);
