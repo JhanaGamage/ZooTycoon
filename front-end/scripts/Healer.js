@@ -8,7 +8,7 @@ class Healer extends Employee {
     }
 
     feed(animal){
-        console.log("L'employé nourrit " + animal.name + " son niveau de faim est de :" + animal.hunger);
+       // console.log("L'employé nourrit " + animal.name + " son niveau de faim est de :" + animal.hunger);
         if (animal.hunger > 4) {
             animal.hunger = 0; //Remettre la faim des animaux à 0
             this.exp++; //Chaque fois qu'un employé nourrit un animal, gagne 1 d'exp

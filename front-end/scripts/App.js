@@ -11,7 +11,7 @@ var vache = new Herbivorous({age : 78, cage : "acier trempé", pv : 2000, hunger
 
 class ZooManager {
 
-    constructor(titi = 0, humans = [], animals = [], stands = []){
+    constructor(humans = [], animals = [], stands = []){
 
         this.t = 0; // Temps en secondes 
         this.interval = 0;
@@ -20,8 +20,17 @@ class ZooManager {
         this.humans = humans;
         this.animals = animals;
         this.stands = stands;
+        
+        this.monHealer = new Healer({available : 1, exp : 1});
+        this.jeanMichel = new HumanAdult({age : 125, name : "Michou", inventory : {money : 150, creditCard : 1} });
+        this.ginette = new HumanChild({age : 2, name : "ginette", relative : this.jeanMichel, manager : this});
+        this.albertLeG = new HumanAdult({age : 125, name : "Albert le gitan", inventory : {gun : 1, money : 0} });
+        
+        manager.AddHuman(this.jeanMichel);        
+        manager.AddHuman(this.albertLeG);
 
-        setInterval(() => this.Clock(), 600);
+
+        setInterval(() => this.Clock(), 600); // Lance la fonction de temps
     }
 
     AddHuman(human){
@@ -36,6 +45,10 @@ class ZooManager {
         this.stands.push(stand)
     }
 
+    static Test(){
+        console.log("TEEESSST")
+    }
+
     TriggerHuman(human){
         
     }
@@ -46,11 +59,8 @@ class ZooManager {
    
     Clock(){
          
-        this.t++;
-           
-        console.log(this.t);
-
-       this.interval++;
+        this.t++;        
+        this.interval++;
 
        if(this.interval > 2){
             monHealer.feed(vache);
@@ -62,9 +72,8 @@ class ZooManager {
 var manager = new ZooManager();
 manager.Clock();
 
-var monHealer = new Healer({available : 1, exp : 1});
-var jeanMichel = new HumanAdult({age : 125, name : "Michou"});
-var ginette = new HumanChild({age : 2, name : "ginette", relative : jeanMichel});
-var albertLeG = new HumanAdult({age : 125, name : "Albert le gitan"});
-manager.AddHuman(jeanMichel);
-manager.AddHuman(albertLeG);
+
+
+
+
+ZooManager.Test();

@@ -11,12 +11,12 @@ class LivingBeing {
       this.mood = param["mood"] ? param["mood"] : 3; // Humeur
       this.thirst = param["thirst"] ? param["thirst"] : 0; // Soif
       this.hunger = param["hunger"] ? param["hunger"] : 0; // Faim
-      this.inventory = param["inventory"] ? param["inventory"] : {}; // Ici l'inventaire est un objet vide. L'argent et autres objets seront stockés dedans
+      this.inventory = param["inventory"] ? param["inventory"] : {}; // Ici l'inventaire est un objet vide. L'argent et autres objets seront stockés dedans. Chaque variable est le nom de l'objet stocké dans l'inventaire avec sa quantité en attribut
       this.name = param["name"] ? param["name"] : "Maurice"; // Faim
       this.strength = param["strength"] ? param["strength"] : 5;
       this.manager = param["manager"] ? param["manager"] : null;
 
-      console.log("Youpi, un être vivant de " + this.age + " ans apparait");     
+      console.dir(this); // Console.log toutes les variables du constructor
 
       this.life = setInterval(() => {
         if(this.pv <= 0)

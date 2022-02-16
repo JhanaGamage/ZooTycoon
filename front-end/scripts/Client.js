@@ -47,8 +47,12 @@ class HumanChild extends Client{
         // Pleurer()
         // Le parent doit acheter quelque chose à l'enfant pour qu'il arrête de pleurer au risque de provoquer une baston avec d'autres parents mécontents
         
-        if(this.manager){
+        if(this.manager){    
+
             var humanTriggered = this.manager.humans[Math.floor(Math.random() * this.manager.humans.length)];
+            console.log("Ce client n'apprécie pas vraiment que l'enfant se mette à pleurer " + humanTriggered)
+
+
             humanTriggered.Attacks(this.relative);
         }
         
