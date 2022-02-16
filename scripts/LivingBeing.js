@@ -13,6 +13,8 @@ class LivingBeing {
       this.hunger = param["hunger"] ? param["hunger"] : 0; // Faim
       this.inventory = param["inventory"] ? param["inventory"] : {}; // Ici l'inventaire est un objet vide. L'argent et autres objets seront stockés dedans
       this.name = param["name"] ? param["name"] : "Maurice"; // Faim
+      this.strength = param["strength"] ? param["strength"] : 5;
+      this.manager = param["manager"] ? param["manager"] : null;
 
       console.log("Youpi, un être vivant de " + this.age + " ans apparait");     
 
@@ -37,11 +39,16 @@ class LivingBeing {
     }
 
     Attacks(target){
-
+        console.log(this.name + " mets une bonne grosse patate de forain à " + target.name + "qui perd " + this.strength + " points de vie, OUUUUCH");
     }
 
     Defends(attacker){
-    
+        console.log(this.name + " tente de se défendre !")
+    }
+
+    CounterAttack(target){
+      console.log(this.name + "n'apprécie pas et renvoie une mawashigeri dans sa face, BAAAAM !");
+      target.pv--;
     }
 
     Die(){
@@ -49,4 +56,6 @@ class LivingBeing {
       clearInterval(this.life);
     }
 }
+
+
 export {LivingBeing};

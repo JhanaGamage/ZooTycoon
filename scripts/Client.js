@@ -21,6 +21,7 @@ class HumanAdult extends Client{
         // Achete quelque chose au stand le plus proche, si il s'agit d'un consommable il le stocke dans son inventaire
 
         // console.log("L'adulte vient d'acheter quelque chose");
+
     }
 
     
@@ -36,6 +37,8 @@ class HumanChild extends Client{
         this.relative ? 
         console.log(this.name + "est l'enfant de " + this.relative.name) 
         : console.log("Attention " + this.name + " n'a pas de parents");
+
+        this.Cry();
     }
 
     
@@ -44,6 +47,10 @@ class HumanChild extends Client{
         // Pleurer()
         // Le parent doit acheter quelque chose à l'enfant pour qu'il arrête de pleurer au risque de provoquer une baston avec d'autres parents mécontents
         
+        if(this.manager){
+            var humanTriggered = this.manager.humans[Math.floor(Math.random() * this.manager.humans.length)];
+            humanTriggered.Attacks(this.relative);
+        }
         
         console.log("Oh non !!! L'enfant se met à pleurer");
     }

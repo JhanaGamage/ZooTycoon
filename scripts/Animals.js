@@ -30,8 +30,7 @@ class Carnivorous  extends Animal{
     }
     
     Growl(to){
-        // Grogne(), tous les humains aux alentours gagnent un point d'humeur
-        
+        // Grogne(), tous les humains aux alentours gagnent un point d'humeur        
     }
 }
 
