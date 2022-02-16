@@ -64,6 +64,7 @@ class ZooManager {
 
        if(this.interval > 2){
             this.monHealer.feed(this.vache);
+            this.monHealer.heal(this.vache);
             this.interval = 0;
        }   
     }

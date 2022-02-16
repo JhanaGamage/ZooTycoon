@@ -5,15 +5,6 @@ class Employee extends LivingBeing{
     super(param); // Envoie à la classe parents LivingBeing
     this.available = param["available"] ? param ["available"] : 0 //0 = dispo / 1 = non dispo
     this.exp = param["exp"] ? param["exp"] : 0; //Expérience de l'employé
-
-    if (this.available == 0) {
-        console.log("Cette employé est dispo.")  
-    }
-    else{
-        console.log("Cette employé n'est pas dispo.")
-    }
-
-    console.log("Son expérience est de " + this.exp)
     }
 }
 
