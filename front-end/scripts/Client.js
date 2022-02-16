@@ -49,11 +49,11 @@ class HumanChild extends Client{
         
         if(this.manager){    
 
-            var humanTriggered = this.manager.humans[Math.floor(Math.random() * this.manager.humans.length)];
-            console.log("Ce client n'apprécie pas vraiment que l'enfant se mette à pleurer " + humanTriggered)
+            // var humanTriggered = this.manager.humans[Math.floor(Math.random() * this.manager.humans.length)];
+            // console.log("Ce client n'apprécie pas vraiment que l'enfant se mette à pleurer " + humanTriggered)
 
 
-            humanTriggered.Attacks(this.relative);
+            // humanTriggered.Attacks(this.relative);
         }
         
         console.log("Oh non !!! L'enfant se met à pleurer");

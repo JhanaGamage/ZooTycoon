@@ -1,3 +1,5 @@
+// import { Animal } from "./Animals";
+
 class LivingBeing {
     constructor(param) {
       // Pour recevoir les paramètres depuis la descendance on fait remonter un objet  
@@ -12,7 +14,7 @@ class LivingBeing {
       this.thirst = param["thirst"] ? param["thirst"] : 0; // Soif
       this.hunger = param["hunger"] ? param["hunger"] : 0; // Faim
       this.inventory = param["inventory"] ? param["inventory"] : {}; // Ici l'inventaire est un objet vide. L'argent et autres objets seront stockés dedans. Chaque variable est le nom de l'objet stocké dans l'inventaire avec sa quantité en attribut
-      this.name = param["name"] ? param["name"] : "Maurice"; // Faim
+      this.name = param["name"] ? param["name"] : "Maurice"; // Nom
       this.strength = param["strength"] ? param["strength"] : 5;
       this.manager = param["manager"] ? param["manager"] : null;
 
@@ -25,6 +27,7 @@ class LivingBeing {
         if(this.hunger > 5){
           this.mood--;
           this.pv--;
+          console.log(this.pv + this.name);
         }
 
         this.hunger++;
@@ -52,7 +55,7 @@ class LivingBeing {
     }
 
     Die(){
-      console.log(this.name + "vient de mourir");
+      console.log(this.name + " vient de mourir");
       clearInterval(this.life);
     }
 }
