@@ -1,6 +1,7 @@
 import {Herbivorous, Monkey} from "./Animals.js"
 import {HumanAdult, HumanChild } from "./Client.js";
 import {Healer} from "./Healer.js";
+import {SecurityGuard} from "./Security.js"
 
 
 // Pour instancier un animal on déclare l'objet auquel on passe pour argument un objet avec
@@ -21,6 +22,7 @@ class ZooManager {
         
         // Lors de l'instanciation d'une classe, ne pas oublier de donner un nom
         this.monHealer = new Healer({name : "Soigneur", available : 1, exp : 1});
+        this.guard = new SecurityGuard({name : "Guard", available : 1, exp : 1});
         this.jeanMichel = new HumanAdult({age : 125, name : "Michou", inventory : {money : 150, creditCard : 1} });
         this.ginette = new HumanChild({age : 2, name : "ginette", relative : this.jeanMichel, manager : this});
         this.albertLeG = new HumanAdult({age : 125, name : "Albert le gitan", inventory : {gun : 1, money : 0} });
@@ -64,8 +66,13 @@ class ZooManager {
 
        if(this.interval > 2){
             this.monHealer.feed(this.vache);
+            this.monHealer.heal(this.vache);
             this.interval = 0;
        }   
+       if(this.interval > 5){
+        this.guard.CleanCage();
+        this.interval = 0;
+       }
     }
 }
 

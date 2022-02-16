@@ -1,33 +1,30 @@
 import {Employee} from "./Employee.js";
 
-
+// Class des soigneurs
 class Healer extends Employee {
     constructor(param){
-        super(param); 
-      //  setInterval(this.feed, 3000);
+        super(param); //Fait remonter tous les attributs au parent
     }
 
+    // Fonction pour nourrir les animaux
     feed(animal){
-       console.log("Son niveau de faim est de :" + animal.hunger);
-       //console.log("Son niveau d'expérience est de :" + this.exp)
         if (animal.hunger > 4) {
             animal.hunger = 0; //Remettre la faim des animaux à 0
-            console.log("Son niveau de faim est de :" + animal.hunger);
-
-            this.exp++; //Chaque fois qu'un employé nourrit un animal, gagne 1 d'exp
-            this.available = 1; //Est occupé lorsqu'il soigne
-            console.log("L'employé a nourrit " + animal.name + " son niveau de faim est maintenant de :" + animal.hunger);
-            return animal.hunger
+            this.exp++; //Chaque animal nourrit, monHealer gagne 1 d'exp
+            this.available = 1; //Est occupé lorsqu'il soigne            
         }
         else {
-            this.available = 0;
+            this.available = 0; //N'est pas occupé
         }
     }
 
-
+    // Fonction pour soigner les animaux
     heal(animal){
-        animal.pv = 10//Valeur PV de l'animal de base    //Soigne les pv d'un animal blessé
-        this.exp =+ 5; 
+        if (animal.pv < 5) {
+            animal.pv = 10; //Soigne les pv d'un animal blessé
+            this.exp = exp + 5; //Chaque animal soigné, monHealer gagne 5 d'exp
+        }
+        
     }
 }
 
