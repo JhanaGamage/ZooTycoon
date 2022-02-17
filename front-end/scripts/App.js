@@ -86,7 +86,9 @@ class ZooManager {
                 if (this.guard.exp >= 0 && this.guard.exp <= 100 && this.guard.level == 5) {
                     this.guard.ProtectClientLvl5(this.vache); //Lance la fonction |ProtectClient| du guard de lvl5   
                 }
+                console.log("PV: " + this.guard.pv)
             }
+
             if (this.guard.exp > 100) {
                 this.guard.level++;
                 this.guard.exp = 0;

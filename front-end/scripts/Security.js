@@ -24,7 +24,7 @@ class SecurityGuard extends Employee {
     
         if (chanceSave == 1) { //Probabilité d'avoir ce scénario
             this.exp = this.exp + 15; //Gagne Expérience
-            animal.pv =animal.pv - 5; //Blesse Animal
+            animal.pv =animal.pv - 3; //Blesse Animal
             console.log("Le garde de sécurité a réussi à sauver le clients d'une mort certaine.")
             console.log(animal.name + " n'a plus que " + animal.pv + " point de vie")
             return this.exp + animal.pv;
@@ -60,7 +60,7 @@ class SecurityGuard extends Employee {
 
         if (chanceSave == 1 || chanceSave == 2) { //Probabilité d'avoir ce scénario
             this.exp = this.exp + 15; //Gagne Expérience
-            animal.pv =animal.pv - 5; //Blesse Animal
+            animal.pv =animal.pv - 3; //Blesse Animal
             console.log("Le garde de sécurité a réussi à sauver le clients d'une mort certaine.")
             console.log(animal.name + " n'a plus que " + animal.pv + " point de vie")
             return this.exp + animal.pv;
@@ -75,7 +75,7 @@ class SecurityGuard extends Employee {
 
         if (chanceSave == 5) { //Probabilité d'avoir ce scénario
             // client.pv = 0; //Client mort
-            // guard.pv = 0; //Garde de sécurité mort
+            this.guard.pv = 0; //Garde de sécurité mort
             console.log("Le client et le garde de sécurité n'ont pas surécu, l'animal était incontrôlable.");
         }
     }
@@ -89,7 +89,7 @@ class SecurityGuard extends Employee {
 
         if (chanceSave == 1 || chanceSave == 2 || chanceSave == 3) { //Probabilité d'avoir ce scénario
             this.exp = this.exp + 15; //Gagne Expérience
-            animal.pv =animal.pv - 5; //Blesse Animal
+            animal.pv =animal.pv - 3; //Blesse Animal
             console.log("Le garde de sécurité a réussi à sauver le clients d'une mort certaine.")
             console.log(animal.name + " n'a plus que " + animal.pv + " point de vie")
             return this.exp + animal.pv;
@@ -112,7 +112,7 @@ class SecurityGuard extends Employee {
 
         if (chanceSave == 1 || chanceSave == 2 || chanceSave == 3 || chanceSave == 4) { //Probabilité d'avoir ce scénario
             this.exp = this.exp + 15; //Gagne Expérience
-            animal.pv =animal.pv - 5; //Blesse Animal
+            animal.pv =animal.pv - 3; //Blesse Animal
             console.log("Le garde de sécurité a réussi à sauver le clients d'une mort certaine.")
             console.log(animal.name + " n'a plus que " + animal.pv + " point de vie")
             return this.exp + animal.pv;
@@ -128,7 +128,7 @@ class SecurityGuard extends Employee {
 
     // Fonction pour sauver un client // Garde de LVL 5
     ProtectClientLvl5(animal){
-            animal.pv = animal.pv - 5; //Blesse Animal
+            animal.pv = animal.pv - 3; //Blesse Animal
             console.log("Le garde de sécurité a réussi à sauver le clients d'une mort certaine.")
             console.log(animal.name + " n'a plus que " + animal.pv + " point de vie")
             return animal.pv;
