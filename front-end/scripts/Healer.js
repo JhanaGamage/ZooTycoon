@@ -22,9 +22,8 @@ class Healer extends Employee {
     heal(animal){
         if (animal.pv < 5) {
             animal.pv = 10; //Soigne les pv d'un animal blessé
-            this.exp = exp + 5; //Chaque animal soigné, monHealer gagne 5 d'exp
-        }
-        
+            this.exp =+ 5; //Chaque animal soigné, monHealer gagne 5 d'exp
+        }        
     }
 }
 

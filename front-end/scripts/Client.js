@@ -9,7 +9,7 @@ class Client extends LivingBeing{
     min = Math.ceil(min);
         max = Math.floor(max);
         var chanceFalling = Math.floor(Math.random() * (max - min + 1) + min);
-        console.log("chanceFalling: " + chanceFalling);
+        // console.log("chanceFalling: " + chanceFalling);
         return (chanceFalling);
     }
 }

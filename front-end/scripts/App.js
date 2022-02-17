@@ -57,29 +57,48 @@ class ZooManager {
    
     Clock(){
          
-        this.t++;        
-        this.interval++;
+        this.t++; //t monte de 1 à chaque tour de fonction  
+        this.interval++; //L'intervale monte de 1 à chaque tour de fonction
         
         if(this.interval > 2){
             // Intervale pour le soigneur
-            this.monHealer.feed(this.vache);
-            this.monHealer.heal(this.vache);
+            this.monHealer.feed(this.vache); //Lance la fonction |feed| du healer
+            this.monHealer.heal(this.vache); //Lance la fonction |heal| du healer
 
             // Intervale pour le garde de sécurité    
             this.guard.CleanCage();
 
             // Intervale pour le client adulte
             if (this.jeanMichel.FallInsideEnclosure(1,5) == 4) {
-                this.guard.ProtectClient(1,5,this.vache);
+                if (this.guard.exp >= 0 && this.guard.exp <= 100 && this.guard.level == 1) {
+                    this.guard.ProtectClientLvl1(1,5,this.vache); //Lance la fonction |ProtectClient| du guard de lvl1   
+                    return this.vache.pv;
+                }
+                if (this.guard.exp >= 0 && this.guard.exp <= 100 && this.guard.level == 2) {
+                    this.guard.ProtectClientLvl2(1,5,this.vache); //Lance la fonction |ProtectClient| du guard de lvl2   
+                }
+                if (this.guard.exp >= 0 && this.guard.exp <= 100 && this.guard.level == 3) {
+                    this.guard.ProtectClientLvl3(1,5,this.vache); //Lance la fonction |ProtectClient| du guard de lvl3   
+                }
+                if (this.guard.exp >= 0 && this.guard.exp <= 100 && this.guard.level == 4) {
+                    this.guard.ProtectClientLvl4(1,5,this.vache); //Lance la fonction |ProtectClient| du guard de lvl4   
+                }
+                if (this.guard.exp >= 0 && this.guard.exp <= 100 && this.guard.level == 5) {
+                    this.guard.ProtectClientLvl5(this.vache); //Lance la fonction |ProtectClient| du guard de lvl5   
+                }
             }
+            if (this.guard.exp > 100) {
+                this.guard.level++;
+                this.guard.exp = 0;
+                console.log("Level Guard: " + this.guard.level)
+                if (this.guard.level == 5) {
+                console.log(this.guard + " est niveau maximum")
+            }
+            }
+            
+            console.log("Niveau d'EXP: " + this.guard.exp);
             this.interval = 0; 
        }   
-
-        
-        
-
-        
-        
     }
 }
 var manager = new ZooManager();
