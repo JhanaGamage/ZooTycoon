@@ -13,24 +13,32 @@ class SecurityGuard extends Employee {
 
     
 // PAS ENCORE FAIT
-            ProtectCLient(){
-                if (chanceFalling == 4) {
-                    console.log("Il y'a lien");    
-                }
-                
-            //     if(client.dead) {
-            //         this.exp = exp + 15 //Gagne Exp
-            //         animals.pv = animals.pv - 5 //Blesse Animal
-            //     }
-            //     else if(/*Si Security non intervenu*/){
-            //         this.exp = exp-- //Perd Exp
-            //         client.pv = 0 //Il est mort  
-            //     }
-            //     else {
-            //         client.pv = 0 //Mort
-            //         Security.pv = 0 //Mort
-            //     }          
-            }
+    ProtectClient(min,max,animal){
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        var chanceSave = Math.floor(Math.random() * (max - min + 1) + min);
+        console.log("chanceSave: " + chanceSave);
+        if (chanceSave == 1) {
+            this.exp = this.exp + 15; //Gagne Exp
+            animal.pv = animal.pv - 5; //Blesse Animal
+            console.log("Le garde de sécurité a réussi à sauver le clients d'une mort certaine.")
+        }
+
+        if (chanceSave == 2 || chanceSave == 3) {
+            // client.pv = 0;
+            this.exp = this.exp + 3;
+            console.log("Malheureusement le client n'a pas survécu malgré l'intervention du garde de sécurité.");
+        }
+
+        if (chanceSave == 4) {
+            console.log("Le client et le garde de sécurité n'ont pas surécu, l'animal était incontrôlable.");
+        }
+
+        if (chanceSave == 5) {
+            this.exp = this.exp - 10;
+            console.log("Le garde de sécurité n'a pas voulu intervenir.")
+        }          
+    }
 }
 
 export {SecurityGuard};

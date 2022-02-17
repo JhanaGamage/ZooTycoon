@@ -14,8 +14,6 @@ class ZooManager {
 
         this.t = 0; // Temps en secondes 
         this.interval = 0;
-        console.log(this.t)
-
         this.humans = humans;
         this.animals = animals;
         this.stands = stands;
@@ -61,27 +59,29 @@ class ZooManager {
          
         this.t++;        
         this.interval++;
-
-        // Intervale pour le soigneur
+        
         if(this.interval > 2){
+            // Intervale pour le soigneur
             this.monHealer.feed(this.vache);
             this.monHealer.heal(this.vache);
+
+            // Intervale pour le garde de sécurité    
+            this.guard.CleanCage();
+
+            // Intervale pour le client adulte
+            if (this.jeanMichel.FallInsideEnclosure(1,5) == 4) {
+                this.guard.ProtectClient(1,5,this.vache);
+            }
             this.interval = 0; 
        }   
 
-        // Intervale pour le garde de sécurité    
-        if(this.interval > 5){
-            this.guard.CleanCage();
-            this.interval = 0;
-        }
+        
+        
 
-        // Intervale pour le client adulte
-        if (this.interval > 5) {
-            this.jeanMichel.FallInsideEnclosure(1,5);
-        }
+        
+        
     }
 }
-
 var manager = new ZooManager();
 manager.Clock();
 

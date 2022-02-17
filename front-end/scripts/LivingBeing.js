@@ -17,6 +17,7 @@ class LivingBeing {
       this.name = param["name"] ? param["name"] : "Maurice"; // Nom
       this.strength = param["strength"] ? param["strength"] : 5;
       this.manager = param["manager"] ? param["manager"] : null;
+      this.chanceFalling = param["chanceFalling"] ? param ["chanceFalling"] : null
 
       console.dir(this); // Console.log toutes les variables du constructor
 
