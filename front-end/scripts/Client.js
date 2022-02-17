@@ -3,6 +3,13 @@ import { LivingBeing } from "./LivingBeing.js";
 class Client extends LivingBeing{
     constructor(param){
         super(param);
+        super.chanceFalling;
+    }
+    FallInsideEnclosure(min,max){
+    min = Math.ceil(min);
+        max = Math.floor(max);
+        var chanceFalling = Math.floor(Math.random() * (max - min + 1) + min);
+        console.log(chanceFalling);
     }
 }
 
@@ -22,9 +29,7 @@ class HumanAdult extends Client{
 
         // console.log("L'adulte vient d'acheter quelque chose");
 
-    }
-
-    
+    }  
 }
 
 class HumanChild extends Client{
@@ -60,6 +65,7 @@ class HumanChild extends Client{
     }
 
     FallInsideEnclosure(){
+        
         // L'enfant tombe dans l'enclos
         // L'animal l'attaque 
     }

@@ -27,7 +27,7 @@ class LivingBeing {
         if(this.hunger > 5){
           this.mood--;
           this.pv--;
-          console.log(this.pv + this.name);
+          // console.log(this.pv + this.name);
         }
 
         this.hunger++;

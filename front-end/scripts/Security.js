@@ -13,7 +13,11 @@ class SecurityGuard extends Employee {
 
     
 // PAS ENCORE FAIT
-            // ProtectCLient(){
+            ProtectCLient(){
+                if (chanceFalling == 4) {
+                    console.log("Il y'a lien");    
+                }
+                
             //     if(client.dead) {
             //         this.exp = exp + 15 //Gagne Exp
             //         animals.pv = animals.pv - 5 //Blesse Animal
@@ -26,7 +30,7 @@ class SecurityGuard extends Employee {
             //         client.pv = 0 //Mort
             //         Security.pv = 0 //Mort
             //     }          
-            // }
+            }
 }
 
 export {SecurityGuard};

@@ -47,9 +47,7 @@ class ZooManager {
         this.stands.push(stand)
     }
 
-    static Test(){
-        console.log("TEEESSST")
-    }
+    static Test(){}
 
     TriggerHuman(human){
         
@@ -64,23 +62,27 @@ class ZooManager {
         this.t++;        
         this.interval++;
 
-       if(this.interval > 2){
+        // Intervale pour le soigneur
+        if(this.interval > 2){
             this.monHealer.feed(this.vache);
             this.monHealer.heal(this.vache);
-            this.interval = 0;
+            this.interval = 0; 
        }   
-       if(this.interval > 5){
-        this.guard.CleanCage();
-        this.interval = 0;
-       }
+
+        // Intervale pour le garde de sécurité    
+        if(this.interval > 5){
+            this.guard.CleanCage();
+            this.interval = 0;
+        }
+
+        // Intervale pour le client adulte
+        if (this.interval > 5) {
+            this.jeanMichel.FallInsideEnclosure(1,5);
+        }
     }
 }
 
 var manager = new ZooManager();
 manager.Clock();
-
-
-
-
 
 ZooManager.Test();
