@@ -4,7 +4,8 @@
 
 const http = require('http'); // A la différence de import en js, require provient de CommonJs, un module qui permet d'importer un fichier sans avoir à spécifier son chemin. Permet également d'omettre l'extension d'un fichier 
 const app = require('./app'); // Récupération du fichier app.js avec notre application Express
-
+const localApp = require('./localMongo'); // Récupération du fichier localMongo.js pour utliser une bdd en local
+const save = require('./save');
 
 
 const normalizePort = val => { // Renvoie un port valide
@@ -17,9 +18,10 @@ const normalizePort = val => { // Renvoie un port valide
          return port;
        }
        return false;
-     };
+};
+
 const port = normalizePort(process.env.PORT || '3000');
-app.set('port', port); // Initialise l'application Express sur un port
+save.set('port', port); // Initialise l'application Express sur un port
 
 
 const errorHandler = error => {
@@ -48,7 +50,7 @@ const errorHandler = error => {
 //    res.end("Voilà la réponse");
 //}); // Comporte une requête et une réponse
 
-const server = http.createServer(app);
+const server = http.createServer(save);
 
 server.on('error', errorHandler);
 server.on('listening', () => {

@@ -1,7 +1,7 @@
 import {Herbivorous, Monkey} from "./Animals.js"
 import {HumanAdult, HumanChild } from "./Client.js";
 import {Healer} from "./Healer.js";
-import {SecurityGuard} from "./Security.js"
+import {SecurityGuard} from "./Security.js";
 
 
 // Pour instancier un animal on déclare l'objet auquel on passe pour argument un objet avec
@@ -11,6 +11,7 @@ import {SecurityGuard} from "./Security.js"
 class ZooManager {
 
     constructor(humans = [], animals = [], stands = []){
+        this.FindSecurityInDb('620f83ce21aea6a684fc4d4f');
 
         this.t = 0; // Temps en secondes 
         this.interval = 0;
@@ -73,6 +74,23 @@ class ZooManager {
         this.guard.CleanCage();
         this.interval = 0;
        }
+    }  
+    
+    FindSecurityInDb = (objId) =>
+    {
+    
+        fetch('https://localhost:3000/find/:id', { 
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            params : {id : objId},
+            method: "GET" 
+        })
+         .then(data => {return data.json()})
+         .then(res => {console.log(res)})
+         .catch(error => console.log(error))
+     
     }
 }
 
@@ -81,6 +99,49 @@ manager.Clock();
 
 
 
+ZooManager.Test(); // Vérifie si la fonction statique est bien appelée
+
+const data = {
+    name : "Michel",      
+    available : false, 
+    experience : 2,     
+    pv : 30,
+    mood : 1,
+    thirst : 1,
+    hunger : 1,
+    strength : 1,
+    inventory : {money : 100}
+}
+
+//fetch('http://localhost:3000/saveGuardian', {
+//    headers: {
+//    'Accept': 'application/json',
+//    'Content-Type': 'application/json'
+//  }, body: JSON.stringify(data), method: "post" })
+//    .then(data => {return data.json()})
+//    .then(res => {console.log(res)})
+//    .catch(error => console.log(error))
 
 
-ZooManager.Test();
+
+
+// Récupération de toute la collection 'securities'
+fetch('https://localhost:3000/findAll', { 
+    headers: {
+       'Accept': 'application/json',
+       'Content-Type': 'application/json'
+     }, 
+    method: "GET" })
+    .then(data => {return data.json()})
+    .then(res => {console.log(res)})
+    .catch(error => console.log(error))
+
+//axios({
+//    method : 'post',
+//    url : 'https://localhost:3000/saveGuardian',
+//    data: {
+//        firstName: 'Finn',
+//        lastName: 'Williams'
+//      }
+//}
+//)    
