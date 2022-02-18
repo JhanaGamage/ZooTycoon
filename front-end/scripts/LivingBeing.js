@@ -20,17 +20,18 @@ class LivingBeing {
 
       console.dir(this); // Console.log toutes les variables du constructor
 
-      this.life = setInterval(() => {
+      this.life = setInterval(() => { // Fonction d'intervale pour la vie des êtres vivants
         if(this.pv <= 0)
-            this.Die();
+            this.Die(); //Start function |Die|
 
-        if(this.hunger > 5){
-          this.mood--;
-          this.pv--;
-          console.log(this.pv + this.name);
+        if(this.hunger > 5 || this.thirst > 5){
+          this.mood--; //Baisse l'humeur
+          this.pv--; //Perd des PV
+// console.log(this.thirst + this.name);
         }
 
-        this.hunger++;
+        this.hunger++; //Gagne de la faim
+        this.thirst++; //Gagne de la soif
 
       }, 1000);
     }
@@ -55,8 +56,8 @@ class LivingBeing {
     }
 
     Die(){
-      console.log(this.name + " vient de mourir");
-      clearInterval(this.life);
+// console.log(this.name + " vient de mourir");
+      clearInterval(this.life); //Mettre fin à l'intervale définit précédemment
     }
 }
 
