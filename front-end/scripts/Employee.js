@@ -8,18 +8,26 @@ class Employee extends LivingBeing{
     this.exp = param["exp"] ? param["exp"] : 0; //Expérience de l'employé
     this.level = param["level"] ? param["level"] : 1;
     }
+
+
+    FeedThemselves(){
+        if (this.hunger > 4) {
+            this.hunger = 0;
+        }
+    }
+
+    // Fonction qui détermine les possibilités d'avoir un infarctus
+    HeartAttack(min,max,employee) { //Fonction possibilité d'infarctus aléatoire
+        min = Math.ceil(min); //Donne le minimum d'intervale
+        max = Math.floor(max); //Donne le maximum d'intervale
+        var chanceDie = Math.floor(Math.random() * (max - min + 1) + min);
+    
+        if (chanceDie == 1) {
+            employee.pv = employee.pv - 5;
+            return employee.pv;
+        }            
+    }
 }
-
-// PAS ENCORE FAIT
-            // Infarction() { //Fonction possibilité d'infarctus aléatoire
-            //     let x = Math.random(); 
-            //     if (x = 10) {
-            //         this.pv = pv - 5;
-            //         alert ("Cette employé a perdu 5 pv.");
-            //     }
-            //     console.log ("X est égale à " + x + " et ses PV sont à " + this.pv);
-            // }
-
 
 export {Employee};
 
