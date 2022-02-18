@@ -9,10 +9,13 @@ class Employee extends LivingBeing{
     this.level = param["level"] ? param["level"] : 1;
     }
 
-
+    // Fonction pour que les employés se nourrissent
     FeedThemselves(){
         if (this.hunger > 4) {
             this.hunger = 0;
+        }
+        if (this.thirst > 2) {
+            this.thirst = 0
         }
     }
 

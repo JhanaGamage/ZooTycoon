@@ -12,6 +12,14 @@ class Client extends LivingBeing{
         // console.log("chanceFalling: " + chanceFalling);
         return (chanceFalling);
     }
+    FeedThemselves(){
+        if (this.hunger > 4) {
+            this.hunger = 0;
+        }
+        if (this.thirst > 2) {
+            this.thirst = 0
+        }
+    }
 }
 
 class HumanAdult extends Client{

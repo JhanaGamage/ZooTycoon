@@ -24,13 +24,14 @@ class LivingBeing {
         if(this.pv <= 0)
             this.Die();
 
-        if(this.hunger > 5){
+        if(this.hunger > 5 || this.thirst > 4){
           this.mood--;
           this.pv--;
           // console.log(this.pv + this.name);
         }
 
         this.hunger++;
+        this.thirst++;
 
       }, 1000);
     }

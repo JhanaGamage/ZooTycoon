@@ -21,13 +21,13 @@ class ZooManager {
         // Lors de l'instanciation d'une classe, ne pas oublier de donner un nom
         this.monHealer = new Healer({name : "Soigneur", available : 1, exp : 1});
         this.guard = new SecurityGuard({name : "Guard", available : 1, exp : 1});
-        this.jeanMichel = new HumanAdult({age : 125, name : "Michou", inventory : {money : 150, creditCard : 1} });
-        this.ginette = new HumanChild({age : 2, name : "ginette", relative : this.jeanMichel, manager : this});
-        this.albertLeG = new HumanAdult({age : 125, name : "Albert le gitan", inventory : {gun : 1, money : 0} });
+        this.client1 = new HumanAdult({age : 125, name : "Michou", inventory : {money : 150, creditCard : 1} });
+        this.client2 = new HumanAdult({age : 125, name : "Albert le gitan", inventory : {gun : 1, money : 0} });
+        this.ginette = new HumanChild({age : 2, name : "ginette", relative : this.client1, manager : this});
         this.vache = new Herbivorous({name: "La vache", age : 78, cage : "acier trempé", pv : 20, hunger : 0}); 
 
-        this.AddHuman(this.jeanMichel);        
-        this.AddHuman(this.albertLeG);
+        this.AddHuman(this.client1);        
+        this.AddHuman(this.client2);
 
 
         setInterval(() => this.Clock(), 600); // Lance la fonction de temps
@@ -68,7 +68,7 @@ class ZooManager {
                 if (this.monHealer.HeartAttack(1,20,this.monHealer)){
                     console.log("Le soigneur a eu un infarctus");
                 }
-                console.log("PV Healer: " + this.monHealer.pv);
+                // console.log("PV Healer: " + this.monHealer.pv);
             }            
 
             // Intervale pour le garde de sécurité    
@@ -88,22 +88,31 @@ class ZooManager {
                 if (this.guard.HeartAttack(1,30,this.guard)){
                     console.log("Le garde a eu un infarctus.");
                 }
-                console.log("PV Guard: " + this.guard.pv);
+                // console.log("PV Guard: " + this.guard.pv);
             }
             
             // Intervale pour le client adulte
-            if (this.jeanMichel.FallInsideEnclosure(1,5) == 4 && (this.jeanMichel.pv > 0 || this.guard.pv > 0)) {
+            this.client1.FeedThemselves();
+            this.client2.FeedThemselves();
+            if (this.client1.pv <= 0) {
+                this.client = this.client2;
+            }
+            else{
+                this.client = this.client1;
+            }
+
+            if (this.client.FallInsideEnclosure(1,5) == 4 && (this.client.pv > 0 && this.guard.pv > 0 && this.vache.pv > 0)) {
                 if (this.guard.exp >= 0 && this.guard.exp <= 100 && this.guard.level == 1) {
-                    this.guard.ProtectClientLvl1(1,10,this.vache,this.jeanMichel,this.guard); //Lance la fonction |ProtectClient| du guard de lvl1   
+                    this.guard.ProtectClientLvl1(1,10,this.vache,this.client,this.guard); //Lance la fonction |ProtectClient| du guard de lvl1 
                 }
                 if (this.guard.exp >= 0 && this.guard.exp <= 100 && this.guard.level == 2) {
-                    this.guard.ProtectClientLvl2(1,10,this.vache); //Lance la fonction |ProtectClient| du guard de lvl2   
+                    this.guard.ProtectClientLvl2(1,10,this.vache,this.client); //Lance la fonction |ProtectClient| du guard de lvl2   
                 }
                 if (this.guard.exp >= 0 && this.guard.exp <= 100 && this.guard.level == 3) {
-                    this.guard.ProtectClientLvl3(1,10,this.vache); //Lance la fonction |ProtectClient| du guard de lvl3   
+                    this.guard.ProtectClientLvl3(1,10,this.vache,this.client); //Lance la fonction |ProtectClient| du guard de lvl3   
                 }
                 if (this.guard.exp >= 0 && this.guard.exp <= 100 && this.guard.level == 4) {
-                    this.guard.ProtectClientLvl4(1,10,this.vache); //Lance la fonction |ProtectClient| du guard de lvl4   
+                    this.guard.ProtectClientLvl4(1,10,this.vache,this.client); //Lance la fonction |ProtectClient| du guard de lvl4   
                 }
                 if (this.guard.exp >= 0 && this.guard.exp <= 100 && this.guard.level == 5) {
                     this.guard.ProtectClientLvl5(this.vache); //Lance la fonction |ProtectClient| du guard de lvl5   
