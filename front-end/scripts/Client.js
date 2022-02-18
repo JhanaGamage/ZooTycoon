@@ -6,28 +6,25 @@ class Client extends LivingBeing{
         super.chanceFalling;
     }
     FallInsideEnclosure(min,max){
-    min = Math.ceil(min);
-        max = Math.floor(max);
-        var chanceFalling = Math.floor(Math.random() * (max - min + 1) + min);
+    min = Math.ceil(min); //Donne le minimum d'intervale
+        max = Math.floor(max); //Donne le maximum d'intervale
+        var chanceFalling = Math.floor(Math.random() * (max - min + 1) + min); //Donne un nombre aléatoire avec une intervale
         // console.log("chanceFalling: " + chanceFalling);
-        return (chanceFalling);
+        return (chanceFalling); //Retourne les chances d'un client de tomber dans l'enclos 
     }
     FeedThemselves(){
         if (this.hunger > 4) {
-            this.hunger = 0;
+            this.hunger = 0; //Remet la faim du client à 0
         }
         if (this.thirst > 2) {
-            this.thirst = 0
+            this.thirst = 0; //Remet la soif du client à 0
         }
     }
 }
 
 class HumanAdult extends Client{
-    constructor(param)
-    {   
+    constructor(param){   
         super(param);                
-        
-        setInterval(this.BuySomenthing, 2000);
     }
 
     

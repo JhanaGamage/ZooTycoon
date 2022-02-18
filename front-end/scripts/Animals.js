@@ -5,7 +5,7 @@ class Animal extends LivingBeing{
     constructor(param){
         super(param); // Envoie les paramètre à la classe parent LivingBeing
 
-        this.cage =  param["cage"] ? param["cage"] : "bois";
+        this.cage =  param["cage"] ? param["cage"] : "bois"; //Type de Cage
         this.type =  param["type"] ? param["type"] : "terrestre"; // Terrestre, marin ou volatile     
     }
   
