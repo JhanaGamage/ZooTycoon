@@ -4,13 +4,12 @@ import {LivingBeing} from "./LivingBeing.js";
 class Employee extends LivingBeing{
     constructor (param){
         super(param); //Fait remonter tous les attributs au parent
-        this.available = param["available"] ? param ["available"] : 0 //0 = dispo / 1 = non dispo
         this.exp = param["exp"] ? param["exp"] : 0; //Expérience de l'employé
         this.level = param["level"] ? param["level"] : 1; //Niveau de l'employé
     }
 
     // Fonction pour que les employés se nourrissent
-    FeedThemselves(employee,humanStock){
+    FeedItself(employee,humanStock){
         if (employee.hunger > 4) {
             employee.hunger = 0; //Remet la faim de l'employé à 0
 //Intéraction avec le stock | A FINIR | humanStock.foodStock = humanStock.foodStock - 9;
@@ -28,9 +27,9 @@ class Employee extends LivingBeing{
         max = Math.floor(max); //Donne le maximum d'intervale
         var chanceDie = Math.floor(Math.random() * (max - min + 1) + min); //Donne un nombre pour définir les chances d'activé chanceDie
         
-        if (chanceDie == 1) {
-            employee.pv = employee.pv - 5; //l'employé perd 5PV à chaque infarctus
-            return employee.pv; //Renvoie les PV de l'employé
+        if (chanceDie === 1) {
+            employee.health = employee.health - 5; //l'employé perd 5PV à chaque infarctus
+            return employee.health; //Renvoie les PV de l'employé
         }            
     }
 }

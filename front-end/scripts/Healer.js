@@ -4,6 +4,8 @@ import {Employee} from "./Employee.js";
 class Healer extends Employee {
     constructor(param){
         super(param); //Fait remonter tous les attributs au parent
+
+        console.log(this.constructor.name)
     }
 
     // Fonction pour nourrir les animaux
@@ -21,8 +23,8 @@ class Healer extends Employee {
 
     // Fonction pour soigner les animaux
     heal(animal){
-        if (animal.pv < 5) {
-            animal.pv = animal.pv + 10; //Soigne les PV d'un animal blessé
+        if (animal.health < 5) {
+            animal.health = animal.health + 10; //Soigne les PV d'un animal blessé
             this.exp =+ 5; //Chaque animal soigné, monHealer gagne 5 d'exp
         }        
     }

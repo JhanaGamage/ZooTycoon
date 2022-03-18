@@ -3,16 +3,17 @@ import { LivingBeing } from "./LivingBeing.js";
 class Client extends LivingBeing{
     constructor(param){
         super(param);
-        super.chanceFalling;
     }
+    
     FallInsideEnclosure(min,max){
-    min = Math.ceil(min); //Donne le minimum d'intervale
+        min = Math.ceil(min); //Donne le minimum d'intervale
         max = Math.floor(max); //Donne le maximum d'intervale
         var chanceFalling = Math.floor(Math.random() * (max - min + 1) + min); //Donne un nombre aléatoire avec une intervale
         // console.log("chanceFalling: " + chanceFalling);
-        return (chanceFalling); //Retourne les chances d'un client de tomber dans l'enclos 
+        return (chanceFalling); //Retourne les chances d'un client de tomber dans l'enclos
     }
-    FeedThemselves(){
+
+    FeedItself(){
         if (this.hunger > 4) {
             this.hunger = 0; //Remet la faim du client à 0
         }
@@ -24,9 +25,9 @@ class Client extends LivingBeing{
 
 class HumanAdult extends Client{
     constructor(param){   
-        super(param);                
+        super(param);         
+        this.className = 'HumanAdult';       
     }
-
     
     BuySomenthing(obj){
 
@@ -42,12 +43,12 @@ class HumanChild extends Client{
 
     constructor(param){
         super(param);
-
+        this.className = 'HumanAdult'; 
         this.relative = param["relative"] ? param["relative"] : null; // L'enfant a-t-il un parent
         // L'enfant se trouve toujours avec son parent
-        this.relative ? 
-        console.log(this.name + "est l'enfant de " + this.relative.name) 
-        : console.log("Attention " + this.name + " n'a pas de parents");
+        //this.relative ? 
+        //console.log(this.name + "est l'enfant de " + this.relative.name) 
+        //: console.log("Attention " + this.name + " n'a pas de parents");
 
         this.Cry();
     }
@@ -67,14 +68,10 @@ class HumanChild extends Client{
             // humanTriggered.Attacks(this.relative);
         }
         
-        console.log("Oh non !!! L'enfant se met à pleurer");
+      //  console.log("Oh non !!! L'enfant se met à pleurer");
     }
 
-    FallInsideEnclosure(){
-        
-        // L'enfant tombe dans l'enclos
-        // L'animal l'attaque 
-    }
+
 }
 
 export {Client, HumanAdult, HumanChild};

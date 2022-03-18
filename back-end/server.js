@@ -4,24 +4,31 @@
 
 const http = require('http'); // A la différence de import en js, require provient de CommonJs, un module qui permet d'importer un fichier sans avoir à spécifier son chemin. Permet également d'omettre l'extension d'un fichier 
 const app = require('./app'); // Récupération du fichier app.js avec notre application Express
-const localApp = require('./localMongo'); // Récupération du fichier localMongo.js pour utliser une bdd en local
-const save = require('./save');
+// const localApp = require('./localMongo'); // Récupération du fichier localMongo.js pour utliser une bdd en local
+const app = require('./app'); // Importe le module de sauvegarde
+process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0; // Supprime sécurité !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+const mongoose = require('mongoose');
+
+// Db Atlas link :
+// mongodb+srv://Ja:LrB4MYsi6VCf0Aj5@cluster0.ome7t.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+mongoose.connect('mongodb://localhost:27017/ZooDb', // Etablit une connexion avec la bdd Mongo
+  { useNewUrlParser: true,
+    useUnifiedTopology: true })
+  .then(() => console.log('Connexion à MongoDB réussie !'))
+  .catch(err => console.log(err.reason));
+
 
 
 const normalizePort = val => { // Renvoie un port valide
-       const port = parseInt(val, 10);
-     
-       if (isNaN(port)) {
-         return val;
-       }
-       if (port >= 0) {
-         return port;
-       }
-       return false;
+    const port = parseInt(val, 10);
+   
+    if (isNaN(port))  return val;
+    else if (port >= 0) return port;
+    else return false;
 };
 
 const port = normalizePort(process.env.PORT || '3000');
-save.set('port', port); // Initialise l'application Express sur un port
+app.set('port', port); // Initialise l'application Express sur un port
 
 
 const errorHandler = error => {
@@ -31,26 +38,18 @@ const errorHandler = error => {
        const address = server.address();
        const bind = typeof address === 'string' ? 'pipe ' + address : 'port: ' + port;
        switch (error.code) {
-         case 'EACCES':
-           console.error(bind + ' requires elevated privileges.');
-           process.exit(1);
-           break;
-         case 'EADDRINUSE':
-           console.error(bind + ' is already in use.');
-           process.exit(1);
-           break;
-         default:
-           throw error;
+          case 'EACCES':
+            console.error(bind + ' requires elevated privileges.');
+            process.exit(1);
+          case 'EADDRINUSE':
+            console.error(bind + ' is already in use.');
+            process.exit(1);
+          default:
+            throw error;
        }
 };
 
-
-
-//const server = http.createServer((req, res) => {
-//    res.end("Voilà la réponse");
-//}); // Comporte une requête et une réponse
-
-const server = http.createServer(save);
+const server = http.createServer(app);
 
 server.on('error', errorHandler);
 server.on('listening', () => {
@@ -61,5 +60,3 @@ server.on('listening', () => {
 
 server.listen(port); // Vérifie si l'environnement sur lequel tourne notre serveur utilise un port sinon on utilisera par défaut le port 3000
 // -> Ecoute des requêtes à partir d'un port
-
-// Utilisation de l'outil Postman pour faire des tests de requêtes https://www.postman.com/

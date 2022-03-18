@@ -8,14 +8,7 @@ class Animal extends LivingBeing{
         this.cage =  param["cage"] ? param["cage"] : "bois"; //Type de Cage
         this.type =  param["type"] ? param["type"] : "terrestre"; // Terrestre, marin ou volatile     
     }
-  
-    Eat(obj){
-  
-    }
-  
-    Sleep(time){
-  
-    }
+
 }
 
 class Omnivorous extends Animal{   
@@ -52,6 +45,7 @@ class Monkey extends Herbivorous{
 
     constructor(param){
         super(param);
+        this.className = 'monkey';
     }
 
     DebugInfo(){
@@ -59,5 +53,15 @@ class Monkey extends Herbivorous{
     }
 }
 
+class Spider extends Herbivorous{
 
-export {Animal, Omnivorous, Herbivorous, Carnivorous, Monkey};
+    constructor(param){
+        super(param);
+        this.className = 'monkey';
+    }
+
+
+}
+
+
+export {Monkey, Spider};

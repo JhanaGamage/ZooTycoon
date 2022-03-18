@@ -1,7 +1,5 @@
 // Connect to a local mongo database
 
-
-
 const { MongoClient } = require('mongodb');
 // or as an es module:
 // import { MongoClient } from 'mongodb'

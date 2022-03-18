@@ -1,5 +1,3 @@
-// import { Animal } from "./Animals";
-
 class LivingBeing {
     constructor(param) {
       // Pour recevoir les paramètres depuis la descendance on fait remonter un objet  
@@ -8,32 +6,47 @@ class LivingBeing {
       // d'une classe enfant possède un variable ayant pour clef celle que l'on recherche
       // en utilisant nomDeLObjet["nomDeLaClef"]
 
+      // Toutes les échelles de valeurs seront comprises entre 1 et 10
+      // Sauf pour les états ternaires réprésentés par 1 2 3 
+    
+      this.name = param["name"] ? param["name"] : "Maurice"; // Nom
       this.age = param["age"] ? param["age"] : 30; 
-      this.pv = param["pv"] ? param["pv"] : 10; // Points de vie
+      this.health = param["health"] ? param["health"] : 10; // Points de vie
       this.mood = param["mood"] ? param["mood"] : 3; // Humeur
       this.thirst = param["thirst"] ? param["thirst"] : 0; // Soif
       this.hunger = param["hunger"] ? param["hunger"] : 0; // Faim
       this.inventory = param["inventory"] ? param["inventory"] : {}; // Ici l'inventaire est un objet vide. L'argent et autres objets seront stockés dedans. Chaque variable est le nom de l'objet stocké dans l'inventaire avec sa quantité en attribut
-      this.name = param["name"] ? param["name"] : "Maurice"; // Nom
       this.strength = param["strength"] ? param["strength"] : 5;
-      this.manager = param["manager"] ? param["manager"] : null;
+      this.available = param["available"] ? param["available"] : true;
 
-      console.dir(this); // Console.log toutes les variables du constructor
+      this.manager = param["manager"] ? param["manager"] : null;
+      this.className = param["className"] ? param["className"] : null;
+      this.clock = param["clock"] ? param["clock"] : null;
+
+
+      // console.dir(this); // Console.log toutes les variables du constructor
 
       this.life = setInterval(() => { // Fonction d'intervale pour la vie des êtres vivants
-        if(this.pv <= 0)
-            this.Die(); //Start function |Die|
+        
+        if(this.health <= 0){
+          console.log("die")
+          if(this.manager) this.manager.DeleteObjectFromLocalDatabase(this.name, this.className);
+          clearInterval(this.life); // Mettre fin à l'intervale définit précédemment
+          //  this.Die(); 
+        }
+
 
         if(this.hunger > 5 || this.thirst > 5){
           this.mood--; //Baisse l'humeur
-          this.pv--; //Perd des PV
-// console.log(this.thirst + this.name);
+          this.health--; //Perd des health
         }
 
         this.hunger++; //Gagne de la faim
         this.thirst++; //Gagne de la soif
 
       }, 1000);
+
+      
     }
 
     LivingFunctions(functions){
@@ -42,22 +55,35 @@ class LivingBeing {
       });
     }
 
+    Eat(obj){
+  
+    }
+  
+    Sleep(time){
+  
+    }
+
     Attacks(target){
-        console.log(this.name + " mets une bonne grosse patate de forain à " + target.name + "qui perd " + this.strength + " points de vie, OUUUUCH");
+        //console.log(this.name + " mets une bonne grosse patate de forain à " + target.name + "qui perd " + this.strength + " points de vie, OUUUUCH");
     }
 
     Defends(attacker){
-        console.log(this.name + " tente de se défendre !")
+        //console.log(this.name + " tente de se défendre contre " + attacker)
     }
 
     CounterAttack(target){
-      console.log(this.name + "n'apprécie pas et renvoie une mawashigeri dans sa face, BAAAAM !");
-      target.pv--;
+      //console.log(this.name + "n'apprécie pas et renvoie une mawashigeri dans sa face, BAAAAM !");
+      target.health--;
+    }
+
+    Steal(){
+      // Un singe ou un adulte peut voler quelqu'un. Peut provoquer une bagarre
     }
 
     Die(){
-// console.log(this.name + " vient de mourir");
-      clearInterval(this.life); //Mettre fin à l'intervale définit précédemment
+      //console.log(this.name + " vient de mourir");
+      if(this.manager) this.manager.DeleteObjectFromLocalDatabase(this.name, this.className);
+      clearInterval(this.life); // Mettre fin à l'intervale définit précédemment
     }
 }
 
