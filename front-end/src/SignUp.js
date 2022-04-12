@@ -25,6 +25,9 @@ class SignUp extends React.Component{
         const{name, value} = event.currentTarget;
         console.log(name, value)
 
+        const checkVar = String(value);
+        if(checkVar.length > 100) return;
+
         this.setState({[name]: value});
     }
 

@@ -3,7 +3,3 @@ node_modules
 
 .babelrc
 .dist
-
-*.log
-
-*.json

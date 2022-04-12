@@ -12,7 +12,12 @@ router.signup = (req, res) => {
    
     bcrypt.hash(req.body.password, 10)
     .then(hash => {
+      bcrypt.compare(req.body.password, hash, function(err, result) {
+        if (err) { throw (err); }
+        console.log("comparaison des mots de passe", result);
+      });
 
+      
       const newUser = new user({
         name: req.body.name,
         mail: req.body.mail,
@@ -28,25 +33,35 @@ router.signup = (req, res) => {
  
 };
 
-router.login = (req, res) => {
-    User.findOne({ email: req.body.email })
-    .then(user => {
-      if (!user) {
+router.signin = (req, res) => {
+    console.log("Login", req.body);
+
+    user.findOne({ email: req.body.email })
+    .then(userFound => {
+      if (!userFound) {
         return res.status(401).json({ error: 'Utilisateur non trouvé !' });
       }
-      bcrypt.compare(req.body.password, user.password)
+
+      bcrypt.compare(req.body.password, hash, function(err, result) {
+        if (err) {console.log("comparaison des mots de passe", result); throw (err); }
+        console.log("comparaison des mots de passe", result);
+      });
+
+      
+
+      bcrypt.compare(req.body.password, userFound.password)
         .then(valid => {
           if (!valid) {
-            return res.status(401).json({ error: 'Mot de passe incorrect !' });
+            return res.status(401).json({ error: 'Mot de passe incorrect !', sendPassword:req.body.password, passwordFound: userFound.password});
           }
           res.status(200).json({
-            userId: user._id,
+            userId: userFound._id,
             token: 'TOKEN'
           });
         })
-        .catch(error => res.status(500).json({ error }));
+        .catch(error => res.status(500).json({ error : 'Impossible de comparer les hashs'}));
     })
-    .catch(error => res.status(500).json({ error }));
+    .catch(error => res.status(500).json({ error : 'Erreur base de donnée'}));
 };
 
 module.exports = router;

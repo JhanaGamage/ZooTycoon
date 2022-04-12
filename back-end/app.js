@@ -14,9 +14,10 @@ const userRoutes = require('./routes/user');
 // app.use est un middleware. Un middleware est un bloc de code qui traite les requêtes et réponses de votre application.
 // Il est possible d'appeler autant de middleware que l'on souhaite avec l'ajout d'une fonction next() en argument
 
-app.use((req, res, next) => { // Autorise CORS
-      console.log("Middleware d'autorisation du CORS");
+app.use((req, res, next) => { 
+      console.log("Entrée d'une requête");
 
+      // Autorise CORS
       res.setHeader('Access-Control-Allow-Origin', '*');
       res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
       res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');

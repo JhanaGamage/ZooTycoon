@@ -3,23 +3,23 @@ import React from 'react';
 
 // All api request
 export default class ApiCall extends React.Component{
+
     static signUp(data){
         console.log("Envoi requête d'incription");
-        axios.post('http://localhost:3000/api/auth/signUp', { name: data.name, mail: data.mail, password: data.password })
+        axios.post('http://localhost:3000/api/auth/signup', { name: data.name, mail: data.mail, password: data.password })
            .then(res => {return res.data})
            .then(res => {console.log("Inscription :", res)})
            .catch(error => console.log(error))
     }
 
-     signIn(data){
-        console.log("Récupération d'une sauvegarde en cours");
-        axios.post('http://localhost:3000/api/signIn', { mail: data.mail, password: data.password })
-           .then(res => {return res.data})
-           .then(res => {console.log("Inscription :", res)})
+    static signIn(data){
+        console.log("Envoie requête connexion");
+        axios.post('http://localhost:3000/api/auth/signin', { mail: data.mail, password: data.password })
+           .then(res => {console.log("Inscription :", res); return res.data; })
            .catch(error => console.log(error))
     }
 
-     fetchSave(saveId){
+    fetchSave(saveId){
         console.log("Récupération d'une sauvegarde en cours");
         axios.post('http://localhost:3000/api/fetchSave', { id : saveId})
            .then(res => {return res.data})
@@ -27,7 +27,7 @@ export default class ApiCall extends React.Component{
            .catch(error => console.log(error))    
     }
 
-     fetchAllSave(){
+    fetchAllSave(){
         axios('http://localhost:3000/api/fetchAllSaves', { 
             headers: {
                 'Accept': 'application/json',
@@ -40,7 +40,7 @@ export default class ApiCall extends React.Component{
           .catch(error => console.log(error));
     }
 
-      save(game){
+    save(game){
         const save = {userId: "hihi", partyId : "haha", spiders : game};
         console.log("Envoie de la sauvegarde au serveur", save, game);
 
