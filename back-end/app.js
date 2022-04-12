@@ -3,7 +3,7 @@
 */
 
 const express = require('express');
-const app = express(); 
+const app = express();
 const saveRoutes = require('./routes/save');
 const fetchRoutes = require('./routes/fetch');
 const userRoutes = require('./routes/user');
@@ -15,8 +15,7 @@ const userRoutes = require('./routes/user');
 // Il est possible d'appeler autant de middleware que l'on souhaite avec l'ajout d'une fonction next() en argument
 
 app.use((req, res, next) => { // Autorise CORS
-      console.log("Middleware d'autorisation du CORS")
-
+      console.log("Middleware d'autorisation du CORS");
 
       res.setHeader('Access-Control-Allow-Origin', '*');
       res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
@@ -27,7 +26,7 @@ app.use((req, res, next) => { // Autorise CORS
 
 app.use(express.json()); // Express prend toutes les requêtes qui ont comme Content-Type  application/json  et met à disposition leur  body  directement sur l'objet req, ce qui nous permet d'écrire le middleware POST suivant :
 
-app.use('/api/save/', saveRoutes); 
+app.use('/api/save/', saveRoutes);
 
 app.use('/api/fetch/', fetchRoutes); 
 

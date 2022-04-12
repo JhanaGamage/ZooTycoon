@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const uniqueValidator = require('mongoose-unique-validator')
+const uniqueValidator = require('mongoose-unique-validator'); //mongoose-unique-validator is a plugin which adds pre-save validation for unique fields within a Mongoose schema.
 const common = {
     name : {type: String, required: true}, 
     partyId : {type: String, required: true},      
@@ -27,10 +27,7 @@ const gamePlaySchema = mongoose.Schema({
 });
 
 const userSchema = mongoose.Schema({
-    createdAt : {type: Date},   
     name : {type: String},      
-    firstName : {type: String},      
-    age : {type: Number},      
     mail : {type: String, required: true, unique: true},     
     password : {type: String},     
 });

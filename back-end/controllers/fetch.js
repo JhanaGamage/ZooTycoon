@@ -6,15 +6,15 @@ const router = express.Router();
 // Importation des schémas pour envoyer des objets vers les collections de MongoDb
 const {security, adultClient, childClient, healer, seller, gamePlay} = require('../schemas.js');
 
-exports.fetchOneSave =  (req, res) => {   
+router.fetchOneSave =  (req, res) => {   
   console.log("fetch router :", req.body) 
   gamePlay.findOne({ _id: req.body.id} )
   .then(file => res.status(200).json({ message: 'Partie réupérée !'}))
   .catch(error => res.status(400).json({ error }));
 }; 
 
-exports.fetchAllGamesFromUser = (req, res) => {    
-    console.log("find")
+router.fetchAllGamesFromUser = (req, res) => {    
+    console.log("find all saves from user")
 
     security.aggregate([{
           $group: resources // Récumpère la collection Securities
@@ -43,7 +43,7 @@ exports.fetchAllGamesFromUser = (req, res) => {
     });
 }; 
 
-exports.fetchAllSaves =  (req, res) => {    
+router.fetchAllSaves =  (req, res) => {    
   console.log("fetch game play")
   gamePlay.find()
   .then(routers => res.status(200).json(routers))

@@ -4,7 +4,7 @@
 
 const express = require('express');
 const router = express.Router();
-const saveCtrl = require('../controllers/fetch');
+const saveCtrl = require('../controllers/save');
 // Importation des schémas pour envoyer des objets vers les collections de MongoDb
 const {security, adultClient, childClient, healer, seller, gamePlay} = require('../schemas.js');
 
