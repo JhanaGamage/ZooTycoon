@@ -1,5 +1,6 @@
 import React from 'react';
 import  Apicall  from './ApiCall';
+import axios from 'axios';
 
 class SignIn extends React.Component{
 
@@ -16,7 +17,7 @@ class SignIn extends React.Component{
 
     handleChange = (event) =>{      
       const{name, value} = event.currentTarget;
-      console.log(name, value)
+    //  console.log(name, value)
 
       const checkVar = String(value);
       if(checkVar.length > 100) return;
@@ -33,8 +34,27 @@ class SignIn extends React.Component{
         mail : this.state.mail,
         password : this.state.password
       }
+
+
       console.log("HANDLESUBMIT", this.state,  data)
-      Apicall.signIn(data);
+      let token = null;
+
+      const connexion = new Promise((resolve) => {
+        resolve();
+      });
+
+      axios.post('http://localhost:3000/api/auth/signin', { mail: data.mail, password: data.password })
+      .then(res => { this.setState({token : res.data.token}) })
+      .catch(error => console.log(error))
+     
+    }
+
+    componentDidUpdate(){
+     
+      if(this.state.token)
+      { console.log('Update and send request')
+        Apicall.save(this.state.token);
+      }
     }
 
     render(){
@@ -51,11 +71,11 @@ class SignIn extends React.Component{
                   <div className="rounded-md shadow-sm -space-y-px">
                     <div>
                       <label htmlFor="email-address" className="sr-only">Adresse e-mail</label>
-                      <input id="email-address" onChange={this.handleChange} value={this.state.mail} name="mail" type="email" autocomplete="email" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Email"/>
+                      <input id="email-address" onChange={this.handleChange} value={this.state.mail} name="mail" type="email"autoComplete="email" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Email"/>
                     </div>
                     <div>
                       <label htmlFor="password" className="sr-only">Mot de passe</label>
-                      <input id="password" onChange={this.handleChange}  value={this.state.password}  name="password" type="password" autocomplete="current-password" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Mot de passe"/>
+                      <input id="password" onChange={this.handleChange}  value={this.state.password}  name="password" type="password"autoComplete="current-password" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Mot de passe"/>
                     </div>
                   </div>
 

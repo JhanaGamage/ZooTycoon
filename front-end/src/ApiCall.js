@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 
+
 // All api request
 export default class ApiCall extends React.Component{
 
@@ -15,7 +16,7 @@ export default class ApiCall extends React.Component{
     static signIn(data){
         console.log("Envoie requête connexion");
         axios.post('http://localhost:3000/api/auth/signin', { mail: data.mail, password: data.password })
-           .then(res => {console.log("Inscription :", res); return res.data; })
+           .then(res => {console.log("Connexion :", res.data.token); return res.data.token; })
            .catch(error => console.log(error))
     }
 
@@ -40,13 +41,19 @@ export default class ApiCall extends React.Component{
           .catch(error => console.log(error));
     }
 
-    save(game){
-        const save = {userId: "hihi", partyId : "haha", spiders : game};
-        console.log("Envoie de la sauvegarde au serveur", save, game);
+    static save(data){
+        const save = {userId: "6256777edb51ad1b88e30b4c", token: data, partyId : "haha", spiders : data};
+        console.log("Envoie de la sauvegarde au serveur", save, data);
 
-        axios.post('http://localhost:3000/api/save/saveGame', save)
+        axios.post('http://localhost:3000/api/save/saveGame', save, {
+            headers: {
+              'Authorization': data
+            }
+          })
             .then(function (response) { console.log(response);})
             .catch(function (error) {console.log(error);});        
+
+          
     }
 }
 
